@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+        http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <context:component-scan base-package="training.spring.*" />
+    <aop:aspectj-autoproxy />
+
+    <aop:config>
+        <aop:aspect id="aspectLoggging" ref="loggingAspect" >
+            
+            <!-- @Before -->
+            <!--
+                Invoke LoggingAspect.logBefore when a method (that starts with method) 
+                declared in any of the classes within the com.demo.* package is invoked.
+            -->
+            <aop:pointcut id="pointCutBefore" 
+                          expression="execution(* training.spring.aop.sample.aop..*.*.method*(..))" />                          
+            <aop:before method="logBefore" pointcut-ref="pointCutBefore" />
+			
+            <!-- @After --> 
+            <!--
+                Invoke LoggingAspect.logAfter when method2 declared in
+                any of the classes within the com.demo.* package is invoked.
+            -->
+            <aop:pointcut id="pointCutAfter" 
+                          expression="execution(* com.demo..*.*.method2(..))" />
+            <aop:after method="logAfter" pointcut-ref="pointCutAfter" />
+            
+            <!-- @AfterReturning -->   
+            <!--
+                Invoke LoggingAspect.logAfterReturning when a method (that starts with get) 
+                declared in any of the classes within the com.demo.* package is invoked.
+            -->         
+            <aop:pointcut id="pointCutAfterReturning"
+                          expression="execution(* com.demo..*.get*(..))" />
+            <aop:after-returning method="logAfterReturning" returning="result" 
+                          pointcut-ref="pointCutAfterReturning" />
+            
+            <!--
+                Invoke LoggingAspect.logAfterThrowing when any method declared in
+                any of the classes within the com.demo.* package throws an exception.
+            -->
+            <aop:pointcut id="pointCutThrow"
+                          expression="execution(* com.demo..*.*(..))" />
+            <aop:after-throwing method="logAfterThrowing" throwing="error" 
+                          pointcut-ref="pointCutThrow" />
+        </aop:aspect>
+    </aop:config>
+</beans>
