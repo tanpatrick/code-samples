@@ -1,16 +1,19 @@
 package training.spring.mvc.sample.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  *
  * @author Patrick Tan
  */
-public class Child {
+public class Children {
 
     private Integer childId;
     private String childName;
+    @JsonManagedReference
     private Parent parent;
 
-    public Child(Integer childId, String childName, Parent parent) {
+    public Children(Integer childId, String childName, Parent parent) {
         this.childId = childId;
         this.childName = childName;
         this.parent = parent;

@@ -10,10 +10,10 @@
 
     <body>
         <h4>
-            Welcome to <strong>HOME</strong> page.
+            Welcome to <strong>public page</strong>.
         </h4>
         <p>
-            This page can only be accessed by authenticated users.
+            This page can be accessed by any users. 
         </p>
     </body>
 </html>

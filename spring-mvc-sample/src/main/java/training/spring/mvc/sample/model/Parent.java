@@ -1,5 +1,6 @@
 package training.spring.mvc.sample.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,8 @@ public class Parent {
 
     private Integer parentId;
     private String parentName;
-    private List<Child> children = new ArrayList<>();
+    @JsonBackReference
+    private List<Children> children = new ArrayList<>();
 
     public Parent(Integer parentId, String parentName) {
         this.parentId = parentId;
@@ -34,13 +36,12 @@ public class Parent {
         this.parentName = parentName;
     }
 
-    public List<Child> getChildren() {
+    public List<Children> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Child> children) {
+    public void setChildren(List<Children> children) {
         this.children = children;
     }
 
-   
 }

@@ -6,17 +6,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
-        
-        <script>
-//            alert('${myName}');
-        </script>
     </head>
-
     <body>
-        <a>INDEX ${myName}</a>
-        <br>
-        <a>INDEX ${personBea.name}</a>
-        <br>
-        <a>INDEX ${personBea.age}</a>
+        <h4>
+            Welcome to <strong>ADMIN</strong> page.
+        </h4>
+        <p>
+            This page is restricted to users with <strong>ADMIN</strong> role.
+        </p>
     </body>
 </html>

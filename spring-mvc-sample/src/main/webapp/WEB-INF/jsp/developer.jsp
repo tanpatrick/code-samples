@@ -7,13 +7,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
     </head>
-
     <body>
         <h4>
-            Welcome to <strong>HOME</strong> page.
+            Welcome to <strong>DEVELOPER</strong> page.
         </h4>
         <p>
-            This page can only be accessed by authenticated users.
+            This page is restricted to users with <strong>DEVELOPER or ADMIN</strong> role.
         </p>
     </body>
 </html>
