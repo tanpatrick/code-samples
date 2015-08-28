@@ -10,6 +10,12 @@ public class Child {
     private String childName;
     private Parent parent;
 
+    public Child(Integer childId, String childName, Parent parent) {
+        this.childId = childId;
+        this.childName = childName;
+        this.parent = parent;
+    }
+
     public Integer getChildId() {
         return childId;
     }

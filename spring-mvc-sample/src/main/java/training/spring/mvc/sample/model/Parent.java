@@ -1,5 +1,6 @@
 package training.spring.mvc.sample.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ public class Parent {
 
     private Integer parentId;
     private String parentName;
-    private List<Child> children;
+    private List<Child> children = new ArrayList<>();
 
     public Parent(Integer parentId, String parentName) {
         this.parentId = parentId;
