@@ -25,13 +25,13 @@ public class SecurityContextConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/public/**").permitAll()
+                .antMatchers("/", "/public/**").anonymous()
                 .antMatchers("/secured/**").authenticated()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/developer/**").access("hasRole('ADMIN') and hasRole('DEVELOPER')")
-                .and().formLogin().loginPage("/public/login")
+                .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/secured/home")
-                .failureUrl("/public/login?error")
+                .failureUrl("/login?error")
                 //                .usernameParameter("ssoId").passwordParameter("password")
                 .and().exceptionHandling().accessDeniedPage("/access-denied");
     }

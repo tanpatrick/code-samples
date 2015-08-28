@@ -9,8 +9,7 @@
     </head>
 
     <body>
-        ${pageContext.request.contextPath}
-        <form method="POST">
+        <form action="login" method="POST">
             <input type="text" name="username" placeholder="Username" required autofocus="autofocus" value="admin" />
             <input type="password" name="password" placeholder="Password" required="required" value="admin@12345" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

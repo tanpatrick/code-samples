@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Patrick Tan
  */
 @Controller
+@RequestMapping("*")
 public class MyController {
 
-    @RequestMapping("/public/login")
+    @RequestMapping
     public String login() {
         return "login";
     }
