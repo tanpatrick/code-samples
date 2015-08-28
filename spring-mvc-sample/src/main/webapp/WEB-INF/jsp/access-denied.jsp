@@ -9,11 +9,8 @@
     </head>
 
     <body>
-        <h4>
-            Welcome to <strong>public page</strong>.
-        </h4>
-        <p>
-            This page can be accessed by any users. 
-        </p>
+        <h1>
+            <strong style="color: red;">ACCESS DENIED!!!</strong>
+        </h1>
     </body>
 </html>

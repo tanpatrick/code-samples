@@ -19,20 +19,19 @@ public class SecurityContextConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("user@12345").roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password("admin@12345").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("developer").password("dev@12345").roles("ADMIN", "DEVELOPER");
+        auth.inMemoryAuthentication().withUser("developer").password("dev@12345").roles("DEVELOPER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/public/**").anonymous()
+                .antMatchers("/public/**").anonymous()
                 .antMatchers("/secured/**").authenticated()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/developer/**").access("hasRole('ADMIN') and hasRole('DEVELOPER')")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/developer/**").hasAnyRole("ADMIN", "DEVELOPER")
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/secured/home")
                 .failureUrl("/login?error")
-                //                .usernameParameter("ssoId").passwordParameter("password")
                 .and().exceptionHandling().accessDeniedPage("/access-denied");
     }
 }
