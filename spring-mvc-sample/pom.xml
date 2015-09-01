@@ -13,9 +13,11 @@
         <jackson.version>2.6.0</jackson.version>
         <spring.version>4.2.0.RELEASE</spring.version>
         <spring.security.version>4.0.2.RELEASE</spring.security.version>
+        <hibernate.version>4.3.9.Final</hibernate.version>
     </properties>
     
-    <dependencies>        
+    <dependencies>      
+        <!-- Spring Dependencies -->  
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -24,6 +26,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -37,6 +44,7 @@
             <version>${spring.version}</version>
         </dependency>
         
+        <!-- Spring Security Dependencies -->  
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -57,6 +65,24 @@
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
+        
+        <!-- Hibernate Dependencies -->  
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.10.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
+        
         
         <dependency>
             <groupId>commons-logging</groupId>

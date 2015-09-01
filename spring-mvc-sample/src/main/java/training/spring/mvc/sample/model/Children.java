@@ -1,17 +1,31 @@
 package training.spring.mvc.sample.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Patrick Tan
  */
-public class Children {
+@Entity
+@Table(name = "child")
+public class Children implements Serializable {
 
     private Integer childId;
     private String childName;
     @JsonManagedReference
     private Parent parent;
+
+    public Children() {
+    }
 
     public Children(Integer childId, String childName, Parent parent) {
         this.childId = childId;
@@ -19,6 +33,9 @@ public class Children {
         this.parent = parent;
     }
 
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @Column(name = "child_id")
     public Integer getChildId() {
         return childId;
     }
@@ -27,6 +44,7 @@ public class Children {
         this.childId = childId;
     }
 
+    @Column(name = "child_name")
     public String getChildName() {
         return childName;
     }
@@ -35,6 +53,8 @@ public class Children {
         this.childName = childName;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
     public Parent getParent() {
         return parent;
     }

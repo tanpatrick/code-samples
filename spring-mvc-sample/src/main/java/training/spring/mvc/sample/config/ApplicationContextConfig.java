@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("training.spring.*")
-@Import({SecurityContextConfig.class})
+@Import({SecurityContextConfig.class, HibernateConfig.class})
 public class ApplicationContextConfig {
 
     @Bean
