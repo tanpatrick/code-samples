@@ -1,9 +1,11 @@
 package training.spring.mvc.sample.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,12 +20,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "parent")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Parent implements Serializable {
 
     private Integer parentId;
     private String parentName;
-    @JsonBackReference
-    private List<Children> children = new ArrayList<>();
+//    @JsonBackReference
+    private Set<Children> children = new HashSet<>();
 
     public Parent() {
     }
@@ -54,11 +57,11 @@ public class Parent implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-    public List<Children> getChildren() {
+    public Set<Children> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Children> children) {
+    public void setChildren(Set<Children> children) {
         this.children = children;
     }
 

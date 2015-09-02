@@ -2,6 +2,7 @@ package training.spring.mvc.sample.dao.impl;
 
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class ParentDaoImpl implements ParentDao {
     @Override
     public List<Parent> getAll() {
         Criteria criteria = getSession().createCriteria(Parent.class);
+        criteria.setFetchMode("children", FetchMode.JOIN);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
     }
 

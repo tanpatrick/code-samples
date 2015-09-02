@@ -1,6 +1,8 @@
 package training.spring.mvc.sample.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,11 +19,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "child")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Children implements Serializable {
 
     private Integer childId;
     private String childName;
-    @JsonManagedReference
+//    @JsonManagedReference
     private Parent parent;
 
     public Children() {

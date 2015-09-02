@@ -3,6 +3,7 @@ package training.spring.mvc.sample.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,12 +25,16 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         LOGGER.debug("configure message converters ...");
 
         ObjectMapper objectMapper = new ObjectMapper();
-        
+
         objectMapper.setDateFormat(new SimpleDateFormat("MMM/dd/yyyy"));
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();        
+        Hibernate4Module hibernate4Module = new Hibernate4Module();
+        hibernate4Module.disable(Hibernate4Module.Feature.USE_TRANSIENT_ANNOTATION);
+        objectMapper.registerModule(hibernate4Module);
+
+        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         jsonConverter.setObjectMapper(objectMapper);
         converters.add(jsonConverter);
 

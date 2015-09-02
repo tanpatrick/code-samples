@@ -22,6 +22,7 @@ public class ChildrenDaoImpl implements ChildrenDao {
     @Override
     public List<Children> getAll() {
         Criteria criteria = getSession().createCriteria(Children.class);
+        criteria.createAlias("parent", "parent");
         return criteria.list();
     }
 
