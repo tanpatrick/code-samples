@@ -20,17 +20,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "child")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-public class Children implements Serializable {
+public class Child implements Serializable {
 
     private Integer childId;
     private String childName;
 //    @JsonManagedReference
     private Parent parent;
 
-    public Children() {
+    public Child() {
     }
 
-    public Children(Integer childId, String childName, Parent parent) {
+    public Child(Integer childId, String childName, Parent parent) {
         this.childId = childId;
         this.childName = childName;
         this.parent = parent;

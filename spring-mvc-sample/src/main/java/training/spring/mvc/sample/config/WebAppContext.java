@@ -13,12 +13,13 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import java.text.SimpleDateFormat;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 
 @Configuration
 @EnableWebMvc
-public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
+public class WebAppContext extends WebMvcConfigurerAdapter {
 
-    private static final Logger LOGGER = Logger.getLogger(WebMvcConfiguration.class);
+    private static final Logger LOGGER = Logger.getLogger(WebAppContext.class);
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -39,6 +40,12 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         converters.add(jsonConverter);
 
         super.configureMessageConverters(converters);
+    }
+
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.jsp("/WEB-INF/jsp/", ".jsp");
+        super.configureViewResolvers(registry);
     }
 
 }

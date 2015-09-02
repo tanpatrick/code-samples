@@ -3,21 +3,21 @@ package training.spring.mvc.sample.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import training.spring.mvc.sample.dao.ChildrenDao;
+import training.spring.mvc.sample.dao.ChildDao;
 import training.spring.mvc.sample.dao.ParentDao;
-import training.spring.mvc.sample.model.Children;
+import training.spring.mvc.sample.model.Child;
 import training.spring.mvc.sample.model.Parent;
-import training.spring.mvc.sample.service.MyService;
+import training.spring.mvc.sample.service.BasicService;
 
 /**
  *
  * @author Patrick Tan
  */
 @Service
-public class ParentServiceImpl implements MyService {
+public class BasicServiceImpl implements BasicService {
 
     @Autowired
-    private ChildrenDao childrenDao;
+    private ChildDao childrenDao;
     @Autowired
     private ParentDao parentDao;
 
@@ -27,12 +27,23 @@ public class ParentServiceImpl implements MyService {
     }
 
     @Override
-    public List<Children> getAllChildren() {
+    public List<Child> getAllChildren() {
         return childrenDao.getAll();
+    }
+
+    @Override
+    public Parent getParentById(Integer id) {
+        return parentDao.getParentById(id);
+    }
+
+    @Override
+    public Child getChildById(Integer id) {
+        return childrenDao.getChildById(id);
     }
 
     @Override
     public void save(Parent parent) {
 //        parentDao.save(parent);
     }
+
 }

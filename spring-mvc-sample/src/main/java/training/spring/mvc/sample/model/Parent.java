@@ -26,7 +26,7 @@ public class Parent implements Serializable {
     private Integer parentId;
     private String parentName;
 //    @JsonBackReference
-    private Set<Children> children = new HashSet<>();
+    private Set<Child> children = new HashSet<>();
 
     public Parent() {
     }
@@ -57,11 +57,11 @@ public class Parent implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-    public Set<Children> getChildren() {
+    public Set<Child> getChildren() {
         return children;
     }
 
-    public void setChildren(Set<Children> children) {
+    public void setChildren(Set<Child> children) {
         this.children = children;
     }
 

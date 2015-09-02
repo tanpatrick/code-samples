@@ -10,4 +10,6 @@ import training.spring.mvc.sample.model.Parent;
 public interface ParentDao {
 
     List<Parent> getAll();
+
+    Parent getParentById(Integer id);
 }
